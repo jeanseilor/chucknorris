@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface ChuckNorrisService {
+
     @GET("random")
     fun getRandom(): Call<ChuckNorris>
 }
