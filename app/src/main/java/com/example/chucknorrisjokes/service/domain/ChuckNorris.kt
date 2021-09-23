@@ -7,5 +7,6 @@ import kotlin.collections.ArrayList
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class ChuckNorris(){
+
    var value: String = ""
 }

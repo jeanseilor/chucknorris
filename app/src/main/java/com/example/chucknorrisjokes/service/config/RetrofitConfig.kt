@@ -6,6 +6,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 
 class RetrofitConfig private constructor(){
 
+
     companion object {
         private lateinit var retrofit:Retrofit
         private val baseUrl = "https://api.chucknorris.io/jokes/"

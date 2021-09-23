@@ -7,27 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.R.id.button_new_joke
 import com.example.chucknorrisjokes.R.id.text_view_chuck
-import com.example.chucknorrisjokes.service.`interface`.ChuckNorrisService
-import com.example.chucknorrisjokes.service.config.RetrofitConfig
-import com.example.chucknorrisjokes.service.domain.ChuckNorris
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.chucknorrisjokes.viewModel.ChucknorrisRandomViewModel
 
 
 class ChucknorrisRandomFragment : Fragment() {
 
     private lateinit var textChuck: TextView;
+    
     private lateinit var buttonNewJoke:Button
-    private lateinit var instanceServiceChuckNorris: ChuckNorrisService
+
+    private lateinit var viewModel:ChucknorrisRandomViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        instanceServiceChuckNorris = RetrofitConfig.createService(ChuckNorrisService::class.java)
 
     }
 
@@ -36,27 +32,20 @@ class ChucknorrisRandomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view:View = inflater.inflate(R.layout.fragment_chucknorris_random, container, false)
+        viewModel = ViewModelProvider(this)[ChucknorrisRandomViewModel::class.java]
+
         textChuck = view.findViewById(text_view_chuck)
+        viewModel.chuckNorris.observe(this.viewLifecycleOwner, {
+            textChuck.text = it.value
+        })
+
         buttonNewJoke = view.findViewById(button_new_joke)
         buttonNewJoke.setOnClickListener {
-            newJoke()
+            viewModel.newJoke()
         }
         return view
     }
 
 
-    private fun newJoke() {
-        val call: Call<ChuckNorris> =  instanceServiceChuckNorris.getRandom()
-        call.enqueue(object : Callback<ChuckNorris> {
-            override fun onResponse(call: Call<ChuckNorris>, response: Response<ChuckNorris>) {
-                val chuckNorrisResponse: ChuckNorris = response.body() as ChuckNorris
-                textChuck.text = chuckNorrisResponse.value
-            }
-            override fun onFailure(call: Call<ChuckNorris>, t: Throwable) {
-                TODO()
-            }
 
-        })
-
-    }
 }
