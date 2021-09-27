@@ -38,7 +38,7 @@ class ChucknorrisRandomFragment : Fragment() {
         viewModel.chuckNorris.observe(this.viewLifecycleOwner, {
             textChuck.text = it.value
         })
-
+//        viewModel.chuckNorris
         buttonNewJoke = view.findViewById(button_new_joke)
         buttonNewJoke.setOnClickListener {
             viewModel.newJoke()
