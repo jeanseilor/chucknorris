@@ -3,7 +3,7 @@ package com.example.chucknorrisjokes.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.chucknorrisjokes.R
-import com.example.chucknorrisjokes.fragment.ChucknorrisRandomFragment
+import com.example.chucknorrisjokes.fragment.ChuckNorrisRandomFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ChucknorrisRandomFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ChuckNorrisRandomFragment()).commit()
         }
     }
 
