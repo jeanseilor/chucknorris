@@ -7,22 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.R.id.button_new_joke
 import com.example.chucknorrisjokes.R.id.text_view_chuck
-import com.example.chucknorrisjokes.viewModel.ChuckNorrisRandomViewModel
-import org.koin.android.ext.android.inject
+import com.example.chucknorrisjokes.viewModel.JokeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ChuckNorrisRandomFragment : Fragment() {
+class JokeRandomFragment : Fragment() {
 
     private lateinit var textChuck: TextView;
     
     private lateinit var buttonNewJoke:Button
 
-    private val chuckNorrisRandomViewModel:ChuckNorrisRandomViewModel by viewModel()
+    private val jokeRandomViewModel:JokeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +35,13 @@ class ChuckNorrisRandomFragment : Fragment() {
 
 
         textChuck = view.findViewById(text_view_chuck)
-        chuckNorrisRandomViewModel.chuckNorris.observe(this.viewLifecycleOwner, {
+        jokeRandomViewModel.joke.observe(this.viewLifecycleOwner, {
             textChuck.text = it.value
         })
 
         buttonNewJoke = view.findViewById(button_new_joke)
         buttonNewJoke.setOnClickListener {
-            chuckNorrisRandomViewModel.newJoke()
+            jokeRandomViewModel.newJoke()
         }
         return view
     }

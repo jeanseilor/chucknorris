@@ -1,16 +1,14 @@
 package com.example.chucknorrisjokes.application
 
-import com.example.chucknorrisjokes.service.config.RetrofitConfig
-import com.example.chucknorrisjokes.viewModel.ChuckNorrisRandomViewModel
-import com.example.chucknorrisjokes.viewModel.ChuckNorrisRandomViewModelImpl
+import com.example.chucknorrisjokes.viewModel.JokeViewModel
+import com.example.chucknorrisjokes.viewModel.JokeViewModelImpl
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import org.koin.dsl.single
 
 object AppDI {
 
     val module = module {
-        viewModel<ChuckNorrisRandomViewModel>(){ChuckNorrisRandomViewModelImpl(get(), get())}
+        viewModel<JokeViewModel>(){JokeViewModelImpl(get(), get())}
     }
 
 //    // single instance of HelloRepository
