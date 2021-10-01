@@ -6,7 +6,7 @@ import com.example.chucknorrisjokes.service.entity.JokeEntity
 
 class JokeEntityToDomain() {
     companion object{
-        fun toJokeDomain(jokeEntity:JokeEntity): JokeDomain {
+        fun toJokeDomain(jokeEntity: JokeEntity): JokeDomain {
             return JokeDomain(jokeEntity.value)
         }
     }
