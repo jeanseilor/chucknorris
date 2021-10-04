@@ -7,5 +7,5 @@ import com.example.chucknorrisjokes.domain.JokeDomain
 
 abstract class JokeViewModel(application:Application): AndroidViewModel(application) {
     abstract val joke: LiveData<JokeDomain>
-    abstract fun newJoke()
+    abstract  fun newJoke()
 }

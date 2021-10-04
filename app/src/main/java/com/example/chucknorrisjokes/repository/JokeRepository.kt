@@ -1,6 +1,10 @@
 package com.example.chucknorrisjokes.repository
 
-class JokeRepository(private var chuckNorrisRepository: JokeRepository) {
+import com.example.chucknorrisjokes.service.`interface`.JokeService
+import com.example.chucknorrisjokes.service.entity.JokeEntity
+import retrofit2.Call
+import retrofit2.Response
 
-//    suspend fun getRandom() = chuckNorrisRepository.getRandom()
+interface JokeRepository {
+    suspend fun getRandom(): Call<JokeEntity>
 }
