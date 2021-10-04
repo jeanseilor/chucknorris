@@ -1,5 +1,7 @@
 package com.example.chucknorrisjokes.application
 
+import com.example.chucknorrisjokes.datasource.JokeDatasource
+import com.example.chucknorrisjokes.datasource.JokeDatasourceImpl
 import com.example.chucknorrisjokes.repository.JokeRepository
 import com.example.chucknorrisjokes.repository.JokeRepositoryImpl
 import com.example.chucknorrisjokes.service.`interface`.JokeService
@@ -13,6 +15,7 @@ object NetworkModule {
     val networkModule = module {
         factory { RetrofitConfig.createService(JokeService::class.java) }
         factory<JokeRepository>{ JokeRepositoryImpl(get())}
-        factory<JokeUseCase>{ JokeUseCaseImpl()}
+        factory<JokeUseCase>{ JokeUseCaseImpl(get())}
+        factory<JokeDatasource>{ JokeDatasourceImpl(get())}
     }
 }

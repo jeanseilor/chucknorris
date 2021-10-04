@@ -8,7 +8,7 @@ import org.koin.dsl.module
 object AppDI {
 
     val module = module {
-        viewModel<JokeViewModel>(){JokeViewModelImpl(get())}
+        viewModel<JokeViewModel>(){JokeViewModelImpl(get(), get())}
     }
 
 //    // single instance of HelloRepository

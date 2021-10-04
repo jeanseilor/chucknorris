@@ -9,20 +9,22 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 
-class JokeUseCaseImpl : JokeUseCase, KoinComponent {
-    private val jokeRepository: JokeRepository by inject()
+class JokeUseCaseImpl(private val jokeRepository: JokeRepository) : JokeUseCase {
 
-    override suspend fun getRandom(): JokeDomain {
+    override suspend fun getRandom(
+        onError: (Throwable) -> Unit,
+        onSuccess: (JokeDomain) -> Unit
+    ) {
         try {
             val request = jokeRepository.getRandom().execute()
             if (request.isSuccessful) {
                 val jokeEntityValue = request.body() as JokeEntity
-
-                return JokeEntityToDomain.toJokeDomain(jokeEntityValue)
+                onSuccess(JokeEntityToDomain.toJokeDomain(jokeEntityValue))
             }
-            throw Exception("Error")
         } catch (e: Exception) {
-            throw e
+            onError(e)
         }
     }
+
+
 }

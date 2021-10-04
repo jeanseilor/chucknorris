@@ -22,14 +22,21 @@ import retrofit2.Response
 
 class JokeViewModelImpl(
     application: Application,
+    private val jokeUseCase: JokeUseCase
 ) : JokeViewModel(application), KoinComponent {
     private var jokeMutable = MutableLiveData<JokeDomain>()
     override val joke: LiveData<JokeDomain> = jokeMutable
-    private val jokeUseCase: JokeUseCase by inject()
+
 
     override fun newJoke() {
         CoroutineScope(Dispatchers.IO).launch {
-            jokeMutable.postValue(jokeUseCase.getRandom())
+            jokeUseCase.getRandom(onError = {
+                throw it
+            },
+            onSuccess = {
+                jokeMutable.postValue(it)
+            })
+
         }
     }
 
