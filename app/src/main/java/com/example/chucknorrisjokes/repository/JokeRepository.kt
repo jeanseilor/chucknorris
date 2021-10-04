@@ -6,5 +6,5 @@ import retrofit2.Call
 import retrofit2.Response
 
 interface JokeRepository {
-    suspend fun getRandom(): Call<JokeEntity>
+    suspend fun getRandom(): JokeEntity
 }

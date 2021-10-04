@@ -8,7 +8,7 @@ import retrofit2.Response
 import java.lang.Exception
 
 class JokeRepositoryImpl(private var jokeDatasource: JokeDatasource) : JokeRepository {
-    override suspend fun getRandom(): Call<JokeEntity> {
+    override suspend fun getRandom(): JokeEntity {
         return jokeDatasource.getRandom()
     }
 }

@@ -10,6 +10,4 @@ class JokeEntityToDomain() {
             return JokeDomain(jokeEntity.value)
         }
     }
-
-
 }
