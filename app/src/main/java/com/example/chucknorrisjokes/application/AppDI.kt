@@ -10,9 +10,4 @@ object AppDI {
     val module = module {
         viewModel<JokeViewModel>(){JokeViewModelImpl(get(), get())}
     }
-
-//    // single instance of HelloRepository
-//    single<HelloRepository> { HelloRepositoryImpl() }
-//
-//    factory { MySimplePresenter(get()) }
 }

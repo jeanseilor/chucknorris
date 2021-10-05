@@ -1,6 +1,8 @@
 package com.example.chucknorrisjokes.repository
 
 import com.example.chucknorrisjokes.datasource.JokeDatasource
+import com.example.chucknorrisjokes.datasource.JokeDatasourceImpl
+import com.example.chucknorrisjokes.service.`interface`.JokeService
 import com.example.chucknorrisjokes.service.entity.JokeEntity
 import io.mockk.*
 
@@ -17,36 +19,18 @@ import retrofit2.Response
 
 
 class JokeRepositoryImplTest {
-
-
     @Test
-    fun `should called the getRandom`() = runBlocking {
+    fun `GIVEN the datasource is mocked when JokeDatasourceImpl is called THEM the getRandom is called once`() =
+        runBlocking {
+            val jokeEntityMock = JokeEntity("value1")
 
+            val jokeService: JokeService = mockk(relaxed = true)
+            coEvery { jokeService.getRandom() } returns jokeEntityMock
 
-        val jokeDatasource = mockk<JokeDatasource>(relaxed = true)
-        coEvery { jokeDatasource.getRandom() } returns call
-        val expectedGetRandom = jokeRepository.getRandom().execute()
-        coVerify(exactly = 1) { jokeRepository.getRandom() }
+            val jokeDataSourceImpl = JokeDatasourceImpl(jokeService)
+            val result = jokeDataSourceImpl.getRandom()
 
-        Assert.assertEquals(expectedGetRandom, call)
-
-    }
-
-
-    @Test
-    fun `should called the getRandom1`() = runBlocking {
-        //GIVEN
-        val jokeEntityMock = JokeEntity().also { it.value = "value1" }
-//        every { call.execute() } returns Response.success(JokeEntity().also { it.value = "value1" })
-
-        val jokeDatasource:JokeDatasource = mockk(relaxed = true)
-//        coEvery { jokeDatasource.getRandom() } returns call
-
-        val jokeRepositoryImpl  = JokeRepositoryImpl(jokeDatasource)
-        //WHEN
-        val result = jokeRepositoryImpl.getRandom()
-        //THEN
-        coVerify(exactly = 1){jokeDatasource.getRandom()}
-        Assert.assertEquals(result, jokeEntityMock)
-    }
+            coVerify(exactly = 1) { jokeService.getRandom() }
+            Assert.assertEquals(jokeEntityMock, result)
+        }
 }

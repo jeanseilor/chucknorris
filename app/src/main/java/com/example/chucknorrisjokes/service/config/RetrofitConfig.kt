@@ -2,6 +2,7 @@ package com.example.chucknorrisjokes.service.config
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitConfig private constructor(){
@@ -15,9 +16,6 @@ class RetrofitConfig private constructor(){
             val httpClient = OkHttpClient.Builder()
             if (!::retrofit.isInitialized){
                 retrofit = Retrofit.Builder().baseUrl(baseUrl).client(httpClient.build())
-                    .addCallAdapterFactory(
-
-                    )
                     .addConverterFactory(GsonConverterFactory.create()).build()
             }
             return retrofit

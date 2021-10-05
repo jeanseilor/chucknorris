@@ -14,10 +14,10 @@ class JokeEntityToDomainTest {
 
     @Test
     fun convertJokeEntityToDomain() {
-        assertEquals(JokeDomain("value1"), JokeEntityToDomain.toJokeDomain(JokeEntity().also {
-            it.value = "value1"
-        }))
+        assertEquals(
+            JokeDomain("value1"),
+            JokeEntityToDomainImpl().toJokeDomain(JokeEntity("value1"))
+        )
     }
-
 
 }

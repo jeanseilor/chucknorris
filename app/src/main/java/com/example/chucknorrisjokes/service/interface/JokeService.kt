@@ -8,5 +8,5 @@ import retrofit2.http.GET
 interface JokeService {
 
     @GET("random")
-    fun getRandom(): JokeEntity
+    suspend fun getRandom(): JokeEntity
 }
