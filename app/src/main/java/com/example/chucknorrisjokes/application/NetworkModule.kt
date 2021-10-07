@@ -16,9 +16,22 @@ object NetworkModule {
 
     val networkModule = module {
         factory { RetrofitConfig.createService(JokeService::class.java) }
-        factory<JokeRepository>{ JokeRepositoryImpl(get())}
-        factory<JokeUseCase>{ JokeUseCaseImpl(get(), get())}
-        factory<JokeDatasource>{ JokeDatasourceImpl(get())}
-        factory<JokeEntityToDomain>{ JokeEntityToDomainImpl()}
+        factory<JokeRepository>{
+            JokeRepositoryImpl(
+                get()
+            )
+        }
+        factory<JokeUseCase>{
+            JokeUseCaseImpl(
+                get(),
+                get()
+            )
+        }
+        factory<JokeDatasource>{
+            JokeDatasourceImpl(
+                get()
+            )
+        }
+        factory<JokeEntityToDomain>{ JokeEntityToDomainImpl() }
     }
 }

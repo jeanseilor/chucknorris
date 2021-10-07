@@ -1,13 +1,11 @@
 package com.example.chucknorrisjokes.useCase
 
-import com.example.chucknorrisjokes.datasource.JokeDatasource
+
 import com.example.chucknorrisjokes.domain.JokeDomain
-import com.example.chucknorrisjokes.maps.JokeEntityToDomain
 import com.example.chucknorrisjokes.maps.JokeEntityToDomainImpl
 import com.example.chucknorrisjokes.repository.JokeRepositoryImpl
 import com.example.chucknorrisjokes.service.entity.JokeEntity
 import io.mockk.*
-import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test

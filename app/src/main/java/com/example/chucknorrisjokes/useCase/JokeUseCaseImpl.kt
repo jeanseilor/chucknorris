@@ -16,7 +16,8 @@ class JokeUseCaseImpl(
         onSuccess: (JokeDomain) -> Unit
     ) {
         try {
-            onSuccess(jokeEntityToDomain.toJokeDomain(jokeRepository.getRandom()))
+            val result = jokeEntityToDomain.toJokeDomain(jokeRepository.getRandom())
+            onSuccess(result)
         } catch (e: Exception) {
             onError(e)
         }
