@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.example.chucknorrisjokes.R
-import com.example.chucknorrisjokes.R.id.button_new_joke
-import com.example.chucknorrisjokes.R.id.text_view_chuck
+
+
 import com.example.chucknorrisjokes.viewModel.JokeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,7 +20,7 @@ class JokeRandomFragment : Fragment() {
     
     private lateinit var buttonNewJoke:Button
 
-    private val jokeRandomViewModel:JokeViewModel by viewModel()
+    private val jokeRandomViewModel: JokeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +34,13 @@ class JokeRandomFragment : Fragment() {
         val view:View = inflater.inflate(R.layout.fragment_chucknorris_random, container, false)
 
 
-        textChuck = view.findViewById(text_view_chuck)
+        textChuck = view.findViewById(R.id.text_view_chuck)
         jokeRandomViewModel.joke.observe(this.viewLifecycleOwner, {
             textChuck.text = it.value
+
         })
 
-        buttonNewJoke = view.findViewById(button_new_joke)
+        buttonNewJoke = view.findViewById(R.id.button_new_joke)
         buttonNewJoke.setOnClickListener {
             jokeRandomViewModel.newJoke()
         }

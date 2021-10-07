@@ -1,4 +1,4 @@
-package com.example.chucknorrisjokes
+package com.example.feature_random_joke
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.chucknorrisjokes", appContext.packageName)
+        assertEquals("com.example.feature_random_joke.test", appContext.packageName)
     }
 }
